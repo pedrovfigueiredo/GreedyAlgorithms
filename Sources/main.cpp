@@ -8,10 +8,26 @@
 
 #include <iostream>
 #include <queue>
+#include <algorithm>
 #include "../Headers/vertex.hpp"
 #include "../Headers/graph.hpp"
 #include "../Headers/min_heap.hpp"
 #include "../Headers/reader.hpp"
+
+void printSolvedGraph(Graph& g, std::string nome, std::string fileName){
+    std::cout <<  "\n| " << nome << "\t" << fileName << " |" << std::endl << std::endl;
+    for( auto vertex : g.vertexes){
+        if (vertex.second->parent){
+            if(vertex.second->cost > 1000)
+                std::cout << "| " << "Atual: "<< vertex.second->id << "\tCusto: " << vertex.second->cost << "\tPai: " << vertex.second->parent->id << " |" << std::endl;
+            else
+                std::cout << "| " << "Atual: "<< vertex.second->id << "\tCusto: " << vertex.second->cost << "\tPai: " << vertex.second->parent->id << " |" << std::endl;
+        }
+        else
+            std::cout << "| " << "Atual: "<< vertex.second->id << "\tCusto: " << vertex.second->cost << "\tPai: " << -1 << "|" << std::endl;
+    }
+    std::cout << std::endl;
+}
 
 void buildSolvedGraph(Graph& g, Graph& solved){
     solved.vertexes = g.vertexes;
@@ -50,27 +66,35 @@ void djijkstra(Graph& g, Graph& solved_graph){
     buildSolvedGraph(g, solved_graph);
 }
 
+bool compare(const Vertex* i, const Vertex* j) {
+        return i->cost < j->cost;
+};
+
 void prim(Graph& g, Graph& solved_graph){
 
-    MinHeap<Vertex*> q;
+    //MinHeap<Vertex*> q;
+    std::vector<Vertex*> q;
     Vertex* u;
     const int first_node = 0;
 
     g.vertexes[first_node]->cost = 0;
 
     for (auto node : g.vertexes)
-        q.push(node.second);
+        q.push_back(node.second);
 
     while (!q.empty()) {
-        u = q.top();
+        std::sort(q.begin(), q.end(), compare);
+        u = q[0];
+        
         for (auto v : g.adj[u->id]) {
             double peso_u_v = v.first;
-            if (q.find(v.second) != q.last() && peso_u_v < v.second->cost) {
+            auto it = std::find(q.begin(), q.end(), v.second);
+            if (it != q.end() && peso_u_v < v.second->cost) {
                 v.second->parent = u;
                 v.second->cost = peso_u_v;
             }
         }
-        q.pop();
+        q.erase(q.begin());
     }
 
     buildSolvedGraph(g, solved_graph);
@@ -81,22 +105,22 @@ int main(int argc, const char * argv[]) {
 
     Graph g1, g2, solved_graph_prim, solved_graph_djijkstra;
     int cost = 0;
+    std::string fileName = "dij50.txt";
 
-    Reader::parseGraphFromFile("/Users/PedroFigueiredo/Google Drive/5 Período/Análise e Projeto de Algoritmos/Algoritmos APA/GreedyAlgorithms/GreedyAlgorithms/input.txt", g1);
-
-    Reader::parseGraphFromFile("/Users/PedroFigueiredo/Google Drive/5 Período/Análise e Projeto de Algoritmos/Algoritmos APA/GreedyAlgorithms/GreedyAlgorithms/input.txt", g2);
+    Reader::parseGraphFromFile(fileName, g1);
+    
+    Reader::parseGraphFromFile(fileName, g2);
 
     prim(g1,solved_graph_prim);
     djijkstra(g2, solved_graph_djijkstra);
 
+    printSolvedGraph(solved_graph_prim, "Prim", fileName);
     for (auto vertex : solved_graph_prim.vertexes)
         cost += vertex.second->cost;
-    std::cout << "Prim: " << cost << std::endl;
-
-    cost = 0;
-    for (auto vertex : solved_graph_djijkstra.vertexes)
-        cost += vertex.second->cost;
-    std::cout << "Djijkstra: " << cost << std::endl;
+    std::cout << "Custo total: " << cost << std::endl << std::endl;
+    
+    printSolvedGraph(solved_graph_djijkstra, "Djijkstra", fileName);
+    std::cout << "Custo total: " << solved_graph_djijkstra.vertexes[solved_graph_djijkstra.vertexes.size() - 1]->cost << std::endl << std::endl;
 
     return 0;
 }

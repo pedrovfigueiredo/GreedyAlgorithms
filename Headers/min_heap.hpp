@@ -10,7 +10,7 @@
 #define min_heap_hpp
 
 struct comparator {
-    bool operator()(Vertex* i, Vertex* j) {
+    bool operator()(const Vertex* i, const Vertex* j) {
         return i->cost > j->cost;
     }
 };
