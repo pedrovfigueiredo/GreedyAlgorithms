@@ -10,26 +10,16 @@
 
 const void Reader::parseGraphFromFile(const std::string& fileName, Graph& g){
     
-    FILE *arq;
     int number, n;
     std::vector<int> costs;
+    std::ifstream file(fileName);
     
-    arq = std::fopen(fileName.c_str(), "r");
+    file >> n;
     
-    if(arq == NULL)
-        std::cout << "Error opening file" << std::endl;
-    
-    while(!feof(arq)){
-        fscanf(arq, "%d", &number);
+    while(file >> number)
         costs.push_back(number);
-    }
     
-    fclose(arq);
-    
-    n = costs[0];
-    costs.erase(costs.begin());
-    costs.erase(costs.end() - 1);
-    
+    file.close();
     
     for (int i = 0; i < n; i++)
         g.addVertex(new Vertex(i));

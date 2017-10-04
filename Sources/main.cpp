@@ -85,7 +85,7 @@ void prim(Graph& g, Graph& solved_graph){
     while (!q.empty()) {
         std::sort(q.begin(), q.end(), compare);
         u = q[0];
-        
+
         for (auto v : g.adj[u->id]) {
             double peso_u_v = v.first;
             auto it = std::find(q.begin(), q.end(), v.second);
@@ -105,10 +105,10 @@ int main(int argc, const char * argv[]) {
 
     Graph g1, g2, solved_graph_prim, solved_graph_djijkstra;
     int cost = 0;
-    std::string fileName = "dij50.txt";
+    std::string fileName = Instances/dij50.txt";
 
     Reader::parseGraphFromFile(fileName, g1);
-    
+
     Reader::parseGraphFromFile(fileName, g2);
 
     prim(g1,solved_graph_prim);
@@ -118,7 +118,7 @@ int main(int argc, const char * argv[]) {
     for (auto vertex : solved_graph_prim.vertexes)
         cost += vertex.second->cost;
     std::cout << "Custo total: " << cost << std::endl << std::endl;
-    
+
     printSolvedGraph(solved_graph_djijkstra, "Djijkstra", fileName);
     std::cout << "Custo total: " << solved_graph_djijkstra.vertexes[solved_graph_djijkstra.vertexes.size() - 1]->cost << std::endl << std::endl;
 
