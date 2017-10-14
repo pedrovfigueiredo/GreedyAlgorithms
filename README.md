@@ -29,31 +29,31 @@ To run the executable:
 
     | Prim	Instances/dij10.txt |
 
-    | Atual: 0	Custo: 0	Pai: -1|
-    | Atual: 1	Custo: 270	Pai: 0 |
-    | Atual: 2	Custo: 504	Pai: 3 |
-    | Atual: 3	Custo: 151	Pai: 4 |
-    | Atual: 4	Custo: 2564	Pai: 1 |
-    | Atual: 5	Custo: 272	Pai: 4 |
-    | Atual: 6	Custo: 241	Pai: 5 |
-    | Atual: 7	Custo: 1560	Pai: 5 |
-    | Atual: 8	Custo: 1274	Pai: 7 |
-    | Atual: 9	Custo: 236	Pai: 8 |
+    | Current: 0	Cost: 0		Parent: -1|
+    | Current: 1	Cost: 270	Parent: 0 |
+    | Current: 2	Cost: 504	Parent: 3 |
+    | Current: 3	Cost: 151	Parent: 4 |
+    | Current: 4	Cost: 2564	Parent: 1 |
+    | Current: 5	Cost: 272	Parent: 4 |
+    | Current: 6	Cost: 241	Parent: 5 |
+    | Current: 7	Cost: 1560	Parent: 5 |
+    | Current: 8	Cost: 1274	Parent: 7 |
+    | Current: 9	Cost: 236	Parent: 8 |
 
-    Custo total: 7072
+    Total cost: 7072
 
 
     | Djijkstra	Instances/dij10.txt |
 
-    | Atual: 0	Custo: 0	Pai: -1|
-    | Atual: 1	Custo: 270	Pai: 0 |
-    | Atual: 2	Custo: 3173	Pai: 1 |
-    | Atual: 3	Custo: 2985	Pai: 1 |
-    | Atual: 4	Custo: 2834	Pai: 1 |
-    | Atual: 5	Custo: 3025	Pai: 1 |
-    | Atual: 6	Custo: 3266	Pai: 5 |
-    | Atual: 7	Custo: 3738	Pai: 0 |
-    | Atual: 8	Custo: 4947	Pai: 0 |
-    | Atual: 9	Custo: 5183	Pai: 8 |
-
-    Custo total: 5183
+    | Current: 0	Cost: 0		Parent: -1|
+    | Current: 1	Cost: 270	Parent: 0 |
+    | Current: 2	Cost: 3173	Parent: 1 |
+    | Current: 3	Cost: 2985	Parent: 1 |
+    | Current: 4	Cost: 2834	Parent: 1 |
+    | Current: 5	Cost: 3025	Parent: 1 |
+    | Current: 6	Cost: 3266	Parent: 5 |
+    | Current: 7	Cost: 3738	Parent: 0 |
+    | Current: 8	Cost: 4947	Parent: 0 |
+    | Current: 9	Cost: 5183	Parent: 8 |
+    
+    Total cost: 5183

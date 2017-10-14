@@ -19,12 +19,12 @@ void printSolvedGraph(Graph& g, std::string nome, std::string fileName){
     for( auto vertex : g.vertexes){
         if (vertex.second->parent){
             if(vertex.second->cost > 1000)
-                std::cout << "| " << "Atual: "<< vertex.second->id << "\tCusto: " << vertex.second->cost << "\tPai: " << vertex.second->parent->id << " |" << std::endl;
+                std::cout << "| " << "Current: "<< vertex.second->id << "\tCost: " << vertex.second->cost << "\tParent: " << vertex.second->parent->id << " |" << std::endl;
             else
-                std::cout << "| " << "Atual: "<< vertex.second->id << "\tCusto: " << vertex.second->cost << "\tPai: " << vertex.second->parent->id << " |" << std::endl;
+                std::cout << "| " << "Current: "<< vertex.second->id << "\tCost: " << vertex.second->cost << "\tParent: " << vertex.second->parent->id << " |" << std::endl;
         }
         else
-            std::cout << "| " << "Atual: "<< vertex.second->id << "\tCusto: " << vertex.second->cost << "\tPai: " << -1 << "|" << std::endl;
+            std::cout << "| " << "Current: "<< vertex.second->id << "\tCost: " << vertex.second->cost << "\t\tParent: " << -1 << "|" << std::endl;
     }
     std::cout << std::endl;
 }
@@ -117,10 +117,10 @@ int main(int argc, const char * argv[]) {
     printSolvedGraph(solved_graph_prim, "Prim", fileName);
     for (auto vertex : solved_graph_prim.vertexes)
         cost += vertex.second->cost;
-    std::cout << "Custo total: " << cost << std::endl << std::endl;
+    std::cout << "Total cost: " << cost << std::endl << std::endl;
 
     printSolvedGraph(solved_graph_djijkstra, "Djijkstra", fileName);
-    std::cout << "Custo total: " << solved_graph_djijkstra.vertexes[solved_graph_djijkstra.vertexes.size() - 1]->cost << std::endl << std::endl;
+    std::cout << "Total cost: " << solved_graph_djijkstra.vertexes[solved_graph_djijkstra.vertexes.size() - 1]->cost << std::endl << std::endl;
 
     return 0;
 }
