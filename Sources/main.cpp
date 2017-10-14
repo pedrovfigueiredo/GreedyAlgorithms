@@ -105,7 +105,7 @@ int main(int argc, const char * argv[]) {
 
     Graph g1, g2, solved_graph_prim, solved_graph_djijkstra;
     int cost = 0;
-    std::string fileName = Instances/dij50.txt";
+    std::string fileName = argv[1];
 
     Reader::parseGraphFromFile(fileName, g1);
 
